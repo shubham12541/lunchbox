@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
     moduleId: module.id,
     selector: 'about-tab',
     templateUrl: '../views/about.component.html',
-    styleUrls: ['../styles/style.css']
+    styleUrls: ['../styles/style.scss']
 })
 
 export class AboutComponent implements OnInit{

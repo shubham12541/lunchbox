@@ -6,7 +6,7 @@ import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'a
     moduleId: module.id,
     selector: 'order-tab',
     templateUrl: '../views/order.component.html',
-    styleUrls: ['../styles/style.css']
+    styleUrls: ['../styles/style.scss']
 })
 
 export class OrderComponent implements OnInit{

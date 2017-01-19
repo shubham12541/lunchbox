@@ -1,9 +1,31 @@
-<ul>
+<!--<ul>
   <li class="text" *ngFor="let item of items | async">
     {{item.$value}}
   </li>
-</ul>
+</ul>-->
 
-<order-tab>
 
-</order-tab>
+<div class="main">
+  <md-toolbar class="primary_color" >
+    <span class="text_color">Lunch Box</span> 
+    <span class="fill-space"></span>
+    <span class="text_color_light">@Anku</span>
+  </md-toolbar>
+
+    <md-tab-group [selectedIndex]="0">
+      <md-tab>
+        <template md-tab-label>
+          <span style="color: whitesmoke">Order</span>
+        </template>
+          <order-tab>Loading Order...</order-tab>
+      </md-tab>
+      <md-tab>
+        <template md-tab-label>
+          <span style="color: whitesmoke">About</span>
+        </template>
+          <about-tab>Loading About...</about-tab>
+      </md-tab>
+    </md-tab-group>
+
+</div>
+

@@ -4,7 +4,7 @@ import { AngularFire, FirebaseListObservable } from 'angularfire2';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./styles/style.scss']
 })
 export class AppComponent {
   items: FirebaseListObservable<any[]>;

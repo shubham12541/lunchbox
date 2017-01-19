@@ -1,0 +1,33 @@
+.fill-space{flex: 1 1 auto;}
+.primary_color{background: #09093b;}
+.accent_color{background: #1a1a59;}
+.warn_color{background: red;}
+.text_color{ color: whitesmoke;}
+.text_color_light {color: #999999;}
+
+.main{margin: -8px;}
+
+.divider{margin-top: 1px;}
+
+.container{margin: 8px;}
+
+.tab_layout{
+    color: whitesmoke;
+    background:indi;
+    margin: -16px;
+    padding: 16px;
+}
+
+/deep/ md-tab-group {
+    .md-tab-header {
+        font-size: 12px !important;
+        display: flex;
+        background: #1a1a59;
+        flex-flow: row wrap;
+        align-items: center;
+        .md-tab-label {
+            flex: 1;
+            min-width: 1px;
+        }
+    }
+}
