@@ -1,1 +1,61 @@
-<h1>something</h1>
+<div class="md-padding" layout-xs="column" layout="row" class="container">
+	<div flex-xs flex-gt-xs="50" layout="column">
+	<md-card>
+		<md-card-title>
+			<span class="md-headline">About Us</span>
+		</md-card-title>
+		<md-card-content>
+			<md-list class="md-dense" flex>
+				<md-list-item class="md-1-line" ng-repeat="item in main.features">
+				  {{item}}
+				</md-list-item>
+			</md-list>
+		</md-card-content>
+	</md-card>
+
+	<md-card>
+		<!-- <img class="md-card-image" src="card-image.png" alt="image caption"> -->
+		<md-card-title>
+				<span class="md-headline">Contacts</span>
+		</md-card-title>
+		<md-card-content>
+			<md-list class="md-dense" flex>
+			  <md-list-item class="md-1-line" ng-repeat="item in main.contacts">
+			  	{{item}} 
+			  </md-list-item>
+			</md-list>
+		</md-card-content>
+	</md-card>
+	</div>
+
+	<div flex-gt-sm="50" flex>
+		<md-card>
+			<md-card-title>
+				<span class="md-headline">Timings</span>
+			</md-card-title>
+			<md-card-content>
+			<md-list class="md-dense" flex>
+				<md-list-item class="md-2-line" ng-repeat="item in main.timings">
+				 	{{item}} 
+				</md-list-item>
+			</md-list>
+			</md-card-content>
+		</md-card>
+
+		<md-card>
+			<md-card-title>
+				<span class="md-headline">Others</span>
+			</md-card-title>
+			<md-card-content>
+			<md-list class="md-dense" flex>
+				<md-list-item class="md-2-line" ng-repeat="item in main.others">
+				 	{{item}} 
+				</md-list-item>
+			</md-list>
+			</md-card-content>
+		</md-card>
+
+
+	</div>
+
+</div>
