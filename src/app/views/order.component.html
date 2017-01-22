@@ -1,5 +1,31 @@
-<div class="container">
+<!--<div class="container">
     <h1>
     {{ (price | async)?.price }}
     </h1> 
+</div>-->
+
+<div class="container">
+    <md-card>
+        <md-card-title>Today's Menu</md-card-title>
+        <md-grid-list cols="4" rowHeight="50px">
+            <md-grid-tile *ngFor="let item of menu | async" style="background: #FFC200 ">
+                {{item.$value}}
+            </md-grid-tile>
+        </md-grid-list>
+
+        <!--<div class="input-container">   
+            <md-input placeholder="Quantity" maxlength="2" type="number" style="width: 100%;"></md-input>
+        </div>-->
+    </md-card>
+
+    <md-card>
+        <md-card-title>Order</md-card-title>
+        <form>
+            <div class="input-container">
+                <span><strong>Quantity: </strong></span>
+                <md-input  type="number" name="quantity" [(ngModel)]="quantity" ></md-input>
+            </div>
+            <button md-raised-button color="primary" (click)="openDialog()">Place Order</button>
+        </form>
+    </md-card>  
 </div>

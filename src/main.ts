@@ -10,3 +10,7 @@ if (environment.production) {
 }
 
 platformBrowserDynamic().bootstrapModule(AppModule);
+
+// import {platformBrowser} from '@angular/platform-browser';
+// import {MaterialAppModuleNgFactory} from './aot/app/app.module.ngfactory';
+// platformBrowser().bootstrapModuleFactory(MaterialAppModuleNgFactory);

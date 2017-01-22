@@ -1,0 +1,21 @@
+<md-toolbar color="primary">
+    <span>User Details</span>
+</md-toolbar>
+
+<form (ngSubmit)="doOrder()" style="margin-top: 16px;">
+    <div class="form-group">
+        <label>Name: </label>
+        <md-input type="text" name="username" style="width: 100%;" [(ngModel)]="username"></md-input>
+    </div>
+    <div class="form-group">
+        <label>Address: </label>
+        <md-input type="text" length="100" style="width: 100%;" name="useraddress" [(ngModel)]="useraddress"></md-input>
+    </div>
+    <div class="form-group">
+        <label>Phone: </label>
+        <md-input type="string" maxlength="10" style="width: 100%;"  name="userphone" [(ngModel)]="userphone" ></md-input>
+    </div>
+    <div class="form-group">
+        <button md-raised-button color="primary" type="submit">Place Order</button>
+    </div>
+</form>

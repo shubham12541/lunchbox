@@ -8,10 +8,11 @@ import {MaterialModule} from '@angular/material';
 import 'hammerjs';
 
 import { AppComponent } from './app.component';
-import {OrderComponent} from './components/order.component';
+import {OrderComponent, UserDialog} from './components/order.component';
 import {AboutComponent} from './components/about.component';
 import {OrderService} from './services/order.service';
 import {UserService} from './services/user.service';
+import {MenuService} from './services/menu.service';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyAwdKiLkQUPVswBTsIwFpuPlw3M4P6GtlM",
@@ -25,7 +26,8 @@ export const firebaseConfig = {
   declarations: [
     AppComponent,
     OrderComponent,
-    AboutComponent
+    AboutComponent,
+    UserDialog
   ],
   imports: [
     BrowserModule,
@@ -34,7 +36,8 @@ export const firebaseConfig = {
     MaterialModule.forRoot(),
     AngularFireModule.initializeApp(firebaseConfig)
   ],
-  providers: [UserService, OrderService],
+  providers: [UserService, OrderService, MenuService],
+  entryComponents: [UserDialog],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
