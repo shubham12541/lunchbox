@@ -49,6 +49,7 @@ export class OrderComponent implements OnInit{
 }
 
 @Component({
+    selector: 'user-dialog',
     templateUrl: '../views/user-dialog.tmpl.html',
     styleUrls: ['../styles/style.scss', '../../custom_theme.scss'],
     providers: [MdSnackBar]
@@ -58,11 +59,12 @@ export class UserDialog{
     useraddress: string = "E-15, Sun City, Sector 54";
     userphone: string = "8894730166";
 
-    constructor(@Optional() public dialogRef: MdDialogRef<UserDialog>, private _snackbar: MdSnackBar){
+    constructor(public dialogRef: MdDialogRef<UserDialog>, private _snackbar: MdSnackBar){
 
     }
 
     doOrder(){
+        this.dialogRef.close('done');
         this.showSnackBar();    
     }   
 
