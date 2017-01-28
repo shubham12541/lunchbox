@@ -1,10 +1,15 @@
-
+body, html{
+      min-height: 100%;
+      height: 100%;
+    }
 
 .fill-space{flex: 1 1 auto;}
 
-.main{margin: -8px; background: lightgrey;}
+.main{ background: lightgrey;}
 
-.container{margin: 8px;}
+.top{
+    margin-top: 16px;
+}
 
 .input-container{
   margin: 16px auto;
@@ -18,21 +23,21 @@ md-card{
 
 
 
-// /deep/ md-tab-group {
-//     .md-tab-header {
-//         font-size: 12px !important;
-//         display: flex;
-//         background: #1a1a59;
-//         flex-flow: row wrap;
-//         align-items: center;
-//         .md-tab-label {
-//             flex: 1;
-//             min-width: 1px;
-//         }
-//     }
-// }
+/deep/ md-tab-group {
+    .md-tab-header {
+        font-size: 12px !important;
+        display: flex;
+        background: #d3d3d3;
+        flex-flow: row wrap;
+        align-items: center;
+        .md-tab-label {
+            flex: 1;
+            min-width: 1px;
+        }
+    }
+}
 
-// .demo-tab-group {
+/*// .demo-tab-group {
 //   border: 1px solid #e0e0e0;
 //   margin-bottom: 40px;
 //   .md-tab-header {
@@ -41,4 +46,4 @@ md-card{
 //   .md-tab-body-content {
 //     padding: 12px;
 //   }
-// }
+// }*/

@@ -20,6 +20,7 @@ export class OrderComponent implements OnInit{
     quantity: number;
     lastDialogResult: string;
     dialogRef: MdDialogRef<UserDialog>;
+    quantity_alert: boolean = false;
     
 
     constructor(private orderService: OrderService, private menuService: MenuService, private _dialog: MdDialog, private _snackbar: MdSnackBar){
@@ -27,15 +28,20 @@ export class OrderComponent implements OnInit{
     }
 
     openDialog(){
-        this.dialogRef = this._dialog.open(UserDialog, {
-            disableClose: false
-        });
+        if(this.quantity < 2 || this.quantity === undefined){
+            this.quantity_alert = true;
+        } else{
+            this.quantity_alert = false;
+            this.dialogRef = this._dialog.open(UserDialog, {
+                disableClose: false
+            });
 
-        this.dialogRef.afterClosed().subscribe(result=>{
-            console.log(result);
-            this.lastDialogResult = result;
-            this.dialogRef = null;
-        });
+            this.dialogRef.afterClosed().subscribe(result=>{
+                console.log(result);
+                this.lastDialogResult = result;
+                this.dialogRef = null;
+            });
+        }
     }
 
     ngOnInit(): void{

@@ -20,7 +20,8 @@ export class AboutComponent implements OnInit{
         ];
         this.contacts = [
             "9971119905",
-            "8894730166"
+            "8894730166",
+            " "
         ];
         this.timings = [
             "Lunch: 12:00 - 14:00",

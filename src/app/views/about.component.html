@@ -1,4 +1,4 @@
-<div class="container-fluid" layout-wrap>
+<!--<div layout-wrap>
 	<md-grid-list cols="2" rowHeight="250px" flex>
 		<md-grid-tile>
 		<md-card  style="width: 80%">
@@ -54,14 +54,79 @@
 					<p md-line> {{other}}</p>
 				</md-list-item>
 			</md-list>
-			<!--<md-list class="md-dense" flex>
-				<md-list-item class="md-2-line" ng-repeat="item in main.others">
-				 	{{item}} 
-				</md-list-item>
-			</md-list>-->
+			
 			</md-card-content>
 		</md-card>
 		</md-grid-tile>
 	</md-grid-list>
 
+</div>-->
+
+<div class="container top">
+	<div class="row">
+		<div class="col-sm-6">
+			<md-card>
+				<md-card-title>About Us</md-card-title>
+				<md-card-content>
+					<md-list class="md-dense app-list">
+						<md-list-item *ngFor="let about of about_us">
+							<p md-line> {{about}}</p>
+						</md-list-item>
+					</md-list>
+				</md-card-content>
+			</md-card>
+		</div>
+
+		<div class="col-sm-6">
+			<md-card>
+				<md-card-title>
+						<span class="md-headline">Contacts</span>
+				</md-card-title>
+				<md-card-content>
+					<md-list class="md-dense app-list">
+						<md-list-item *ngFor="let contact of contacts">
+							<p md-line> {{contact}}</p>
+						</md-list-item>
+					</md-list>
+				</md-card-content>
+			</md-card>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-sm-6">
+			<md-card>
+				<md-card-title>
+					<span class="md-headline">Timings</span>
+				</md-card-title>
+				<md-card-content>
+				<md-list class="md-dense app-list">
+					<md-list-item *ngFor="let timing of timings">
+						<p md-line> {{timing}}</p>
+					</md-list-item>
+				</md-list>
+				</md-card-content>
+			</md-card>
+		</div>
+
+		<div class="col-sm-6">
+			<md-card>
+				<md-card-title>
+					<span class="md-headline">Others</span>
+				</md-card-title>
+				<md-card-content>
+					<md-list class="md-dense app-list">
+					<md-list-item *ngFor="let other of others">
+						<p md-line> {{other}}</p>
+					</md-list-item>
+				</md-list>
+				<!--<md-list class="md-dense" flex>
+					<md-list-item class="md-2-line" ng-repeat="item in main.others">
+						{{item}} 
+					</md-list-item>
+				</md-list>-->
+				</md-card-content>
+			</md-card>
+		</div>
+	</div>
 </div>
