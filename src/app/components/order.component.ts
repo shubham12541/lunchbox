@@ -20,7 +20,7 @@ export class OrderComponent implements OnInit{
     quantity: number;
     lastDialogResult: string;
     dialogRef: MdDialogRef<UserDialog>;
-    quantity_alert: boolean = false;
+    quantity_alert: boolean = true;
     
 
     constructor(private orderService: OrderService, private menuService: MenuService, private _dialog: MdDialog, private _snackbar: MdSnackBar){
