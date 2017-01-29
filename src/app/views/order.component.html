@@ -8,7 +8,7 @@
     <md-card>
         <md-card-title>Today's Menu</md-card-title>
         <md-grid-list cols="4" rowHeight="50px">
-            <md-grid-tile *ngFor="let item of menu | async" style="background: #FFC200 "> {{item.$value}}
+            <md-grid-tile *ngFor="let item of menu | async" style="background: #4B0082; color: #ffffff "> {{item.$value}}
 </md-grid-tile>
 </md-grid-list>
 
@@ -31,9 +31,20 @@
             <strong>Quantity should be atleast 2</strong>
         </div>
         <!--<button md-raised-button color="primary" (click)="openDialog()">Place Order</button>-->
-        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" data-backdrop="false">Open Modal</button>
+        <button md-raised-button color="primary"   
+            data-target="#myModal" data-backdrop="false" (click)="openDialog()">Place Order</button>
     </form>
 
+</md-card>
+
+<md-card *ngIf="order_status">
+    <md-card-title>Order Status</md-card-title>
+    <div class="alert alert-success" *ngIf="order_success">
+        <strong>Order Placed Successfully</strong><br>Contact 8894730166 for any queries.
+    </div>
+    <div class="alert alert-danger" *ngIf="!order_success">
+        <strong>Order Failed</strong><br>Order failed due to some technical reason.<br>For offline order contact: 8894730166/9971119905.
+    </div>
 </md-card>
 </div>
 
@@ -47,7 +58,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Modal Header</h4>
+        <h4 class="modal-title">User Details</h4>
       </div>
       <div class="modal-body">
         <form class="form-horizontal">
@@ -57,8 +68,8 @@
                     <input type="text" class="form-control" id="Name" placeholder="e.g. John Cena" name="userName" [(ngModel)]="userName">
                 </div>
             </div>
-            <div class="alert alert-danger" *ngIf="quantity_alert">
-                <strong>Quantity should be atleast 2</strong>
+            <div class="alert alert-danger" *ngIf="user_name">
+                <strong>*Name is required</strong>
             </div>
 
             <div class="form-group">
@@ -67,8 +78,8 @@
                     <input type="text" maxlength="10" class="form-control" id="phone" placeholder="e.g. 8894730166" name="userPhone" [(ngModel)]="userPhone">
                 </div>
             </div>
-            <div class="alert alert-danger" *ngIf="quantity_alert">
-                <strong>Quantity should be atleast 2</strong>
+            <div class="alert alert-danger" *ngIf="user_phone">
+                <strong>*Invalid Phone Number</strong>
             </div>
 
             <div class="form-group">
@@ -77,15 +88,19 @@
                     <input type="text" class="form-control" id="address" placeholder="e.g. 23, Sant Vihar, T.P. Nagar, Meerut" name="userAddress" [(ngModel)]="userAddress">
                 </div>
             </div>
-            <div class="alert alert-danger" *ngIf="quantity_alert">
-                <strong>Quantity should be atleast 2</strong>
+            <div class="alert alert-danger" *ngIf="user_address">
+                <strong>*Address is required</strong>
+            </div>
+
+            <div class="form-gruop">
+                <label class="control-label col-sm-12">Amount: {{thaliPrice}} x {{quantity}} = Rs. {{thaliPrice*quantity}} (To be Paid by Cash on Delievery)</label>
             </div>
 
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" (onClick)="placeOrder()">Place Order</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button md-raised-button color="primary" type="button" class="btn btn-default" (click)="placeOrder()">Place Order</button>
+        <button md-raised-button color="primary" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
 

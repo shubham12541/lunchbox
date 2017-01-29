@@ -1,8 +1,8 @@
 export class Order{
     id: string;
     name: string;
-    quantity: string;
+    quantity: number;
     phone: string;
     address: string;
-    amount: string;
+    amount: number;
 }
