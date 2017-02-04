@@ -13,15 +13,15 @@ export class UserService{
         this.userList = af.database.list(path);
     }
 
-    saveOrder(user: User){
+    saveUser(user: User){
         return this.userList.push(user);
     }
 
-    removeOrder(user: User){
+    removeUser(user: User){
         return this.userList.remove(user.id);
     }
 
-    updateOrder(user: User, change: any){
+    updadeUser(user: User, change: any){
         return this.userList.update(user.id, change);
     }
 

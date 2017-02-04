@@ -9,43 +9,43 @@
         <md-card-title>Today's Menu</md-card-title>
         <md-grid-list cols="4" rowHeight="50px">
             <md-grid-tile *ngFor="let item of menu | async" style="background: #4B0082; color: #ffffff "> {{item.$value}}
-</md-grid-tile>
-</md-grid-list>
+            </md-grid-tile>
+        </md-grid-list>
 
 <!--<div class="input-container">   
             <md-input placeholder="Quantity" maxlength="2" type="number" style="width: 100%;"></md-input>
         </div>-->
-</md-card>
+    </md-card>
 
-<md-card>
-    <md-card-title>Order</md-card-title>
-    <form class="form-horizontal">
-        <div class="form-group">
-            <label class="control-label col-sm-1" for="Quantity">Quantity: </label>
-            <div class="col-sm-11">
-                <input type="number" class="form-control" id="quantity" name="quantity" [(ngModel)]="quantity">
-                <span class="help-block">to be ordered.</span>
+    <md-card>
+        <md-card-title>Order</md-card-title>
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label class="control-label col-sm-1" for="Quantity">Quantity: </label>
+                <div class="col-sm-11">
+                    <input type="number" class="form-control" id="quantity" name="quantity" [(ngModel)]="quantity">
+                    <span class="help-block">to be ordered.</span>
+                </div>
             </div>
-        </div>
-        <div class="alert alert-danger" *ngIf="quantity_alert">
-            <strong>Quantity should be atleast 2</strong>
-        </div>
-        <!--<button md-raised-button color="primary" (click)="openDialog()">Place Order</button>-->
-        <button md-raised-button color="primary"   
-            data-target="#myModal" data-backdrop="false" (click)="openDialog()">Place Order</button>
-    </form>
+            <div class="alert alert-danger" *ngIf="quantity_alert">
+                <strong>Quantity should be atleast 2</strong>
+            </div>
+            <!--<button md-raised-button color="primary" (click)="openDialog()">Place Order</button>-->
+            <button md-raised-button color="primary"   
+                data-target="#myModal" data-backdrop="false" (click)="openDialog()">Place Order</button>
+        </form>
 
-</md-card>
+    </md-card>
 
-<md-card *ngIf="order_status">
-    <md-card-title>Order Status</md-card-title>
-    <div class="alert alert-success" *ngIf="order_success">
-        <strong>Order Placed Successfully</strong><br>Contact 8894730166 for any queries.
-    </div>
-    <div class="alert alert-danger" *ngIf="!order_success">
-        <strong>Order Failed</strong><br>Order failed due to some technical reason.<br>For offline order contact: 8894730166/9971119905.
-    </div>
-</md-card>
+    <md-card *ngIf="order_status">
+        <md-card-title>Order Status</md-card-title>
+        <div class="alert alert-success" *ngIf="order_success">
+            <strong>Order Placed Successfully</strong><br>Contact 8894730166 for any queries.
+        </div>
+        <div class="alert alert-danger" *ngIf="!order_success">
+            <strong>Order Failed</strong><br>Order failed due to some technical reason.<br>For offline order contact: 8894730166/9971119905.
+        </div>
+    </md-card>
 </div>
 
 

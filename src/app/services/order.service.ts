@@ -30,6 +30,10 @@ export class OrderService{
         return this.price;
     }
 
+    getAllOrders(){
+        return this.order;
+    }
+
     saveOrder(order: Order){
         return this.order.push(order);
     }

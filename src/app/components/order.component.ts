@@ -1,3 +1,5 @@
+import { User } from './../model/user';
+import { UserService } from './../services/user.service';
 import { Order } from './../model/order';
 import { Component, OnInit, Optional } from '@angular/core';
 import {OrderService} from '../services/order.service';
@@ -32,6 +34,7 @@ export class OrderComponent implements OnInit{
     order_success: boolean = false;
 
     order: Order;
+    user: User;
 
     thaliPrice: number;
 
@@ -39,7 +42,8 @@ export class OrderComponent implements OnInit{
     userAddress: string = '';
     userPhone: string = '';
 
-    constructor(private orderService: OrderService, private menuService: MenuService, private _dialog: MdDialog, private _snackbar: MdSnackBar){
+    constructor(private orderService: OrderService, private menuService: MenuService,
+                private _dialog: MdDialog, private _snackbar: MdSnackBar, private userService: UserService){
         
     }
 
@@ -48,15 +52,6 @@ export class OrderComponent implements OnInit{
             this.quantity_alert = true;
         } else{
             this.quantity_alert = false;
-            // this.dialogRef = this._dialog.open(UserDialog, {
-            //     disableClose: false
-            // });
-
-            // this.dialogRef.afterClosed().subscribe(result=>{
-            //     console.log(result);
-            //     this.lastDialogResult = result;
-            //     this.dialogRef = null;
-            // });
             
             $('#myModal').modal({backdrop: false});
             // $('#myModal').modal('toggle');
@@ -114,14 +109,30 @@ export class OrderComponent implements OnInit{
                 amount: this.thaliPrice * this.quantity
             };
 
+            this.user= {
+                id: this.getId(),
+                name: this.userName,
+                phone:  this.userPhone,
+                address: this.userAddress
+            };
+            
+
             this.orderService.saveOrder(this.order)
             .then(response=>{
                 console.log('Order Placed Successfully');
                 this.order_success = true;
             }).catch(err=>{
-                console.log(this.handleError(err));
+                this.handleError(err);
                 this.order_success = false;
             });
+
+            this.userService.saveUser(this.user)
+            .then(response=>{
+                console.log("user saved successfully");
+            })
+            .catch(err=>{
+                this.handleError(err);
+            })
 
             $('#myModal').modal('toggle');
         } else{

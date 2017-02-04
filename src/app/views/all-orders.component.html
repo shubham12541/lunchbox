@@ -1,0 +1,38 @@
+
+<div class="container top">
+    <md-card>
+        <md-card-title>All Orders</md-card-title>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Address</th>
+                        <th>Phone</th>
+                        <th>Quantity</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let order of allOrders; let i = index" [attr.data-index]="i">
+                        <td>{{i+1}}</td>
+                        <td>{{order.name}}</td>
+                        <td>{{order.address}}</td>
+                        <td>{{order.phone}}</td>
+                        <td>{{order.quantity}}</td>
+                        <td>{{order.amount}}</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><strong>Total</strong></td>
+                        <td><strong>{{totalQuantity}}</strong></td>
+                        <td><strong>{{totalAmount}}</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </md-card>
+</div>
