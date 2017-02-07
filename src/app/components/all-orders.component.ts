@@ -13,6 +13,8 @@ import { Component, OnInit } from '@angular/core';
 export class AllOrdersComponent implements OnInit {
     private allOrders: Order[];
     private totalQuantity: number = 0;
+    private totalFullQuantity: number = 0;
+    private totalLightQuantity: number = 0;
     private totalAmount: number = 0;
 
     constructor(private orderService: OrderService) { 
@@ -23,7 +25,8 @@ export class AllOrdersComponent implements OnInit {
         this.orderService.getAllOrders().subscribe(res => {
             this.allOrders = res;
             for(var order of this.allOrders){
-                this.totalQuantity += order.quantity;
+                this.totalFullQuantity += order.fullQuantity;
+                this.totalLightQuantity += order.lightQuantity;
                 this.totalAmount += order.amount;
             }
         });

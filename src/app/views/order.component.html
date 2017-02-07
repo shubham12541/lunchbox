@@ -7,18 +7,160 @@
 <div class="container top">
     <md-card>
         <md-card-title>Today's Menu</md-card-title>
-        <md-grid-list cols="4" rowHeight="50px">
+        <!--<md-grid-list cols="4" rowHeight="50px">
             <md-grid-tile *ngFor="let item of menu | async" style="background: #4B0082; color: #ffffff "> {{item.$value}}
             </md-grid-tile>
-        </md-grid-list>
+        </md-grid-list>-->
 
-<!--<div class="input-container">   
+        <!--TODO: make images of same size-->
+        <div class="row">
+            <div class="col-sm-6">
+                <md-card>
+                    <md-card-header>
+                        <md-card-title>Light Meal</md-card-title>
+                        <md-card-subtitle>Lunch/Dinner</md-card-subtitle>
+                    </md-card-header>
+                    <img md-card-image src="../../assets/img/tiffin1.jpg">
+                    <md-card-content>
+                        <div class="menu-text">
+                            Dal<br>+<br>Seasonal Sabzi<br>+<br>Roti(3)<br>+<br>Rice<br>+<br>Salad
+                        </div>
+
+                        <button md-raised-button color="accent" class="full" (mouseenter)="showLightPrice()" (mouseleave)="defaultLight()" (click)="addLightMealToCart()">
+                            {{lightMealText}}
+                        </button>
+                    </md-card-content>
+                </md-card>
+            </div>
+
+            <div class="col-sm-6">
+                <md-card>
+                    <md-card-header>
+                        <md-card-title>Full Meal</md-card-title>
+                        <md-card-subtitle>Lunch/Dinner</md-card-subtitle>
+                    </md-card-header>
+                    <img md-card-image src="../../assets/img/tiffin2.jpeg">
+                    <md-card-content>
+                        <div class="menu-text">
+                            Dal<br>+<br>Seasonal Sabzi<br>+<br>Roti(5)<br>+<br>Rice<br>+<br>Salad
+                        </div>
+                        <button md-raised-button color="accent" class="full" (mouseenter)="showFullPrice()" (mouseleave)="defaultFull()" (click)="addfullMealToCart()">
+                            {{fullMealText}}
+                        </button>
+                    </md-card-content>
+                </md-card>
+            </div>
+        </div>
+
+        <!--<div class="input-container">   
             <md-input placeholder="Quantity" maxlength="2" type="number" style="width: 100%;"></md-input>
         </div>-->
     </md-card>
 
+    <md-card *ngIf="lightMealQuantity>0 || fullMealQuantity>0">
+        <md-card-title>
+            Cart
+            <button type="button" class="close" (click)="clearCart()">&times;</button>
+        </md-card-title>
+        <md-card-content>
+            <div class="row jumbotron">
+                <div class="row" *ngIf="fullMealQuantity>0">
+                    <div class="col-sm-10">
+                        Full Meal
+                    </div>
+
+                    <div class="col-sm-2">
+                        <button type="button" class="btn btn-primary btn-circle" (click)="decreaseFullMeal()">
+                            <i class="glyphicon glyphicon-minus" aria-hidden="true"></i>
+                        </button> {{fullMealQuantity}}
+                        <button type="button" class="btn btn-primary btn-circle" (click)="increaseFullMeal()">
+                            <i class="glyphicon glyphicon-plus" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <br>
+
+                <div class="row" *ngIf="lightMealQuantity>0">
+                    <div class="col-sm-10">Light Meal</div>
+                    <div class="col-sm-2">
+                        <button type="button" class="btn btn-primary btn-circle" (click)="decreaseLightMeal()">
+                            <i class="glyphicon glyphicon-minus" aria-hidden="true"></i>
+                        </button> {{lightMealQuantity}}
+                        <button type="button" class="btn btn-primary btn-circle" (click)="increaseLightMeal()">
+                            <i class="glyphicon glyphicon-plus" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <br>
+                <div class="line"></div>
+                <br>
+
+                <div class="row">
+                    <div class="col-sm-9"></div>
+                    <div class="col-sm-1"><strong>Total</strong></div>
+                    <div class="col-sm-1 alignCenter">Rs. {{lightMealQuantity*70 + fullMealQuantity*80}}</div>
+                </div>
+            </div>
+
+            <button md-raised-button color="accent" (click)="proceedOrder()">Proceed</button>
+        </md-card-content>
+    </md-card>
+
+    <md-card *ngIf="isUserDetail">
+        <md-card-title>
+            User Details
+            <button type="button" class="close" (click)="clear()">&times;</button>
+        </md-card-title>
+        <md-card-content>
+            <form class="form-horizontal">
+                <div class="form-group row">
+                    <label class="control-label col-sm-2" for="name">Name</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="Name" placeholder="e.g. John Cena" name="userName" [(ngModel)]="userName">
+                    </div>
+                </div>
+                <div class="alert alert-danger" *ngIf="user_name">
+                    <strong>*Name is required</strong>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="Phone">Phone</label>
+                    <div class="col-sm-10">
+                        <input type="text" maxlength="10" class="form-control" id="phone" placeholder="e.g. 8894730166" name="userPhone" [(ngModel)]="userPhone">
+                    </div>
+                </div>
+                <div class="alert alert-danger" *ngIf="user_phone">
+                    <strong>*Invalid Phone Number</strong>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="address">Address</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="address" placeholder="e.g. 23, Sant Vihar, T.P. Nagar, Meerut" name="userAddress"
+                            [(ngModel)]="userAddress">
+                    </div>
+                </div>
+                <div class="alert alert-danger" *ngIf="user_address">
+                    <strong>*Address is required</strong>
+                </div>
+
+                <div class="form-gruop">
+                    <label class="control-label col-sm-12">
+                        Amount: Rs. {{lightMealQuantity*70 + fullMealQuantity*80}} (To be Paid by Cash on Delievery)
+                    </label>
+                </div>
+
+                <button md-raised-button color="primary" type="button"  (click)="placeOrder()">Place Order</button>
+            </form>
+        </md-card-content>
+    </md-card>
+<!--
     <md-card>
-        <md-card-title>Order</md-card-title>
+        <md-card-title>Order
+        <button type="button" class="close">&times;</button>
+        </md-card-title>
         <form class="form-horizontal">
             <div class="form-group">
                 <label class="control-label col-sm-1" for="Quantity">Quantity: </label>
@@ -30,12 +172,10 @@
             <div class="alert alert-danger" *ngIf="quantity_alert">
                 <strong>Quantity should be atleast 2</strong>
             </div>
-            <!--<button md-raised-button color="primary" (click)="openDialog()">Place Order</button>-->
-            <button md-raised-button color="primary"   
-                data-target="#myModal" data-backdrop="false" (click)="openDialog()">Place Order</button>
+            <button md-raised-button color="primary" data-target="#myModal" data-backdrop="false" (click)="openDialog()">Place Order</button>
         </form>
 
-    </md-card>
+    </md-card>-->
 
     <md-card *ngIf="order_status">
         <md-card-title>Order Status</md-card-title>
@@ -49,60 +189,61 @@
 </div>
 
 
-
+<!--FIXME: not being used-->
 <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
+    <div class="modal-dialog">
 
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">User Details</h4>
-      </div>
-      <div class="modal-body">
-        <form class="form-horizontal">
-            <div class="form-group">
-                <label class="control-label col-sm-2" for="name">Name</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="Name" placeholder="e.g. John Cena" name="userName" [(ngModel)]="userName">
-                </div>
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">User Details</h4>
             </div>
-            <div class="alert alert-danger" *ngIf="user_name">
-                <strong>*Name is required</strong>
-            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="name">Name</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="Name" placeholder="e.g. John Cena" name="userName" [(ngModel)]="userName">
+                        </div>
+                    </div>
+                    <div class="alert alert-danger" *ngIf="user_name">
+                        <strong>*Name is required</strong>
+                    </div>
 
-            <div class="form-group">
-                <label class="control-label col-sm-2" for="Phone">Phone</label>
-                <div class="col-sm-10">
-                    <input type="text" maxlength="10" class="form-control" id="phone" placeholder="e.g. 8894730166" name="userPhone" [(ngModel)]="userPhone">
-                </div>
-            </div>
-            <div class="alert alert-danger" *ngIf="user_phone">
-                <strong>*Invalid Phone Number</strong>
-            </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="Phone">Phone</label>
+                        <div class="col-sm-10">
+                            <input type="text" maxlength="10" class="form-control" id="phone" placeholder="e.g. 8894730166" name="userPhone" [(ngModel)]="userPhone">
+                        </div>
+                    </div>
+                    <div class="alert alert-danger" *ngIf="user_phone">
+                        <strong>*Invalid Phone Number</strong>
+                    </div>
 
-            <div class="form-group">
-                <label class="control-label col-sm-2" for="address">Address</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="address" placeholder="e.g. 23, Sant Vihar, T.P. Nagar, Meerut" name="userAddress" [(ngModel)]="userAddress">
-                </div>
-            </div>
-            <div class="alert alert-danger" *ngIf="user_address">
-                <strong>*Address is required</strong>
-            </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="address">Address</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="address" placeholder="e.g. 23, Sant Vihar, T.P. Nagar, Meerut" name="userAddress"
+                                [(ngModel)]="userAddress">
+                        </div>
+                    </div>
+                    <div class="alert alert-danger" *ngIf="user_address">
+                        <strong>*Address is required</strong>
+                    </div>
 
-            <div class="form-gruop">
-                <label class="control-label col-sm-12">Amount: {{thaliPrice}} x {{quantity}} = Rs. {{thaliPrice*quantity}} (To be Paid by Cash on Delievery)</label>
-            </div>
+                    <div class="form-gruop">
+                        <label class="control-label col-sm-12">Amount: {{thaliPrice}} x {{quantity}} = Rs. {{thaliPrice*quantity}} (To be Paid by Cash on Delievery)</label>
+                    </div>
 
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button md-raised-button color="primary" type="button" class="btn btn-default" (click)="placeOrder()">Place Order</button>
-        <button md-raised-button color="primary" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button md-raised-button color="primary" type="button" class="btn btn-default" (click)="placeOrder()">Place Order</button>
+                <button md-raised-button color="primary" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
     </div>
-
-  </div>
 </div>

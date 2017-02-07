@@ -13,6 +13,10 @@ export class UserService{
         this.userList = af.database.list(path);
     }
 
+    getAllUser(){
+        return this.userList;
+    }
+
     saveUser(user: User){
         return this.userList.push(user);
     }

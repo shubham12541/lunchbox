@@ -1,7 +1,8 @@
 export class Order{
     id: string;
     name: string;
-    quantity: number;
+    lightQuantity: number;
+    fullQuantity: number;
     phone: string;
     address: string;
     amount: number;

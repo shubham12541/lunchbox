@@ -10,7 +10,8 @@
                         <th>Name</th>
                         <th>Address</th>
                         <th>Phone</th>
-                        <th>Quantity</th>
+                        <th>Full Meal Quantity</th>
+                        <th>Light Meal Quantity</th>
                         <th>Amount</th>
                     </tr>
                 </thead>
@@ -20,7 +21,8 @@
                         <td>{{order.name}}</td>
                         <td>{{order.address}}</td>
                         <td>{{order.phone}}</td>
-                        <td>{{order.quantity}}</td>
+                        <td>{{order.fullQuantity}}</td>
+                        <td>{{order.lightQuantity}}</td>
                         <td>{{order.amount}}</td>
                     </tr>
                     <tr>
@@ -28,7 +30,8 @@
                         <td></td>
                         <td></td>
                         <td><strong>Total</strong></td>
-                        <td><strong>{{totalQuantity}}</strong></td>
+                        <td><strong>{{totalFullQuantity}}</strong></td>
+                        <td><strong>{{totalLightQuantity}}</strong></td>
                         <td><strong>{{totalAmount}}</strong></td>
                     </tr>
                 </tbody>

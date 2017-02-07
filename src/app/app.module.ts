@@ -1,3 +1,4 @@
+import { AllUsersCpmponent } from './components/all-user.component';
 import { MainComponent } from './components/main.component';
 import { AllOrdersComponent } from './components/all-orders.component';
 import { AppRoutingModule } from './app.routes';
@@ -34,7 +35,8 @@ export const firebaseConfig = {
     OrderComponent,
     AboutComponent,
     UserDialog,
-    AllOrdersComponent
+    AllOrdersComponent,
+    AllUsersCpmponent
   ],
   imports: [
     BrowserModule,

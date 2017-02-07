@@ -22,7 +22,9 @@ export class OrderComponent implements OnInit{
     price: FirebaseObjectObservable<any>;
     menu: FirebaseListObservable<any[]>;
     isDarkTheme: boolean = false;
-    quantity: number;
+    quantity: number = 2;
+    fullMealQuantity = 0;
+    lightMealQuantity = 0;
     lastDialogResult: string;
     dialogRef: MdDialogRef<UserDialog>;
     quantity_alert: boolean = false;
@@ -33,6 +35,8 @@ export class OrderComponent implements OnInit{
     order_status: boolean = false;
     order_success: boolean = false;
 
+    isUserDetail: boolean = false;
+
     order: Order;
     user: User;
 
@@ -42,9 +46,28 @@ export class OrderComponent implements OnInit{
     userAddress: string = '';
     userPhone: string = '';
 
+    lightMealText: string = "Add to Cart";
+    fullMealText: string = "Add to Cart";
+
     constructor(private orderService: OrderService, private menuService: MenuService,
                 private _dialog: MdDialog, private _snackbar: MdSnackBar, private userService: UserService){
         
+    }
+
+    showFullPrice(){
+        this.fullMealText = "Rs. 80/-";
+    }
+
+    showLightPrice(){
+        this.lightMealText = "Rs. 70/-";
+    }
+
+    defaultLight(){
+        this.lightMealText = "Add to Cart";
+    }
+
+    defaultFull(){
+        this.fullMealText = "Add to Cart";
     }
 
     openDialog(){
@@ -105,8 +128,9 @@ export class OrderComponent implements OnInit{
                 name: this.userName,
                 address: this.userAddress,
                 phone: this.userPhone,
-                quantity: this.quantity,
-                amount: this.thaliPrice * this.quantity
+                fullQuantity: this.fullMealQuantity,
+                lightQuantity: this.lightMealQuantity,
+                amount: this.fullMealQuantity*80 + this.lightMealQuantity*70
             };
 
             this.user= {
@@ -132,12 +156,66 @@ export class OrderComponent implements OnInit{
             })
             .catch(err=>{
                 this.handleError(err);
-            })
-
-            $('#myModal').modal('toggle');
+            });
         } else{
 
         }
+    }
+
+    proceedOrder(){
+        this.isUserDetail = true;
+    }
+
+    addLightMealToCart(){
+        if(this.lightMealQuantity===0){
+            this.lightMealQuantity = 1;
+        }
+    }
+
+    addfullMealToCart(){
+        if(this.fullMealQuantity===0){
+            this.fullMealQuantity = 1;
+        }
+    }
+
+    increaseFullMeal(){
+        this.fullMealQuantity++;
+    }
+
+    decreaseFullMeal(){
+        if(this.fullMealQuantity>=1){
+            this.fullMealQuantity--;
+        }
+    }
+
+    increaseLightMeal(){
+        this.lightMealQuantity++;
+    }
+
+    decreaseLightMeal(){
+        if(this.lightMealQuantity>=1){
+            this.lightMealQuantity--;
+        }
+    }
+
+    clear(){
+        if (this.user_phone || this.user_name || this.user_address || this.userName.length!=0 || this.userAddress.length!=0 || this.userPhone.length!=0){
+            this.user_phone     = false;
+            this.user_name      = false;
+            this.user_address   = false;
+
+            this.userName = '';
+            this.userAddress = '';
+            this.userPhone = '';
+        } else{
+            this.isUserDetail = false;
+        }
+    }
+
+    clearCart(){
+        this.lightMealQuantity = 0;
+        this.fullMealQuantity = 0;
+        this.isUserDetail = false;
     }
 
 
@@ -154,6 +232,7 @@ export class OrderComponent implements OnInit{
     }
 }
 
+// FIXME: Not being used delete
 @Component({
     selector: 'user-dialog',
     templateUrl: '../views/user-dialog.tmpl.html',
