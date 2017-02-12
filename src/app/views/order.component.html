@@ -7,44 +7,54 @@
 <div class="container top">
     <md-card>
         <md-card-title>Today's Menu</md-card-title>
-        <!--<md-grid-list cols="4" rowHeight="50px">
-            <md-grid-tile *ngFor="let item of menu | async" style="background: #4B0082; color: #ffffff "> {{item.$value}}
-            </md-grid-tile>
-        </md-grid-list>-->
-
-        <!--TODO: make images of same size-->
         <div class="row">
             <div class="col-sm-6">
                 <md-card>
-                    <md-card-header>
+                    <!--<md-card-header>
                         <md-card-title>Light Meal</md-card-title>
                         <md-card-subtitle>Lunch/Dinner</md-card-subtitle>
-                    </md-card-header>
+                    </md-card-header>-->
+                    <md-card-title-group>
+                        <h3 md-card-sm-image>Rs 70</h3>
+                        <md-card-title>Light Meal</md-card-title>
+                        <md-card-subtitle>Lunch/Dinner</md-card-subtitle>
+                    </md-card-title-group>
                     <img md-card-image src="../../assets/img/tiffin1.jpg">
                     <md-card-content>
                         <div class="menu-text">
                             Dal<br>+<br>Seasonal Sabzi<br>+<br>Roti(3)<br>+<br>Rice<br>+<br>Salad
                         </div>
-
+<!--
                         <button md-raised-button color="accent" class="full" (mouseenter)="showLightPrice()" (mouseleave)="defaultLight()" (click)="addLightMealToCart()">
                             {{lightMealText}}
+                        </button>-->
+                        <button md-raised-button color="accent" class="full" (mouseenter)="toggleState()" (mouseleave)="toggleState()"
+                                (click)="addLightMealToCart()" [@buttonHover]="state">
+                            {{lightMealText}}
                         </button>
+
+                        
                     </md-card-content>
                 </md-card>
             </div>
 
             <div class="col-sm-6">
                 <md-card>
-                    <md-card-header>
+                    <md-card-title-group>
+                        <h3 md-card-sm-image>Rs 80</h3>
                         <md-card-title>Full Meal</md-card-title>
                         <md-card-subtitle>Lunch/Dinner</md-card-subtitle>
-                    </md-card-header>
+                    </md-card-title-group>
                     <img md-card-image src="../../assets/img/tiffin2.jpeg">
                     <md-card-content>
                         <div class="menu-text">
                             Dal<br>+<br>Seasonal Sabzi<br>+<br>Roti(5)<br>+<br>Rice<br>+<br>Salad
                         </div>
-                        <button md-raised-button color="accent" class="full" (mouseenter)="showFullPrice()" (mouseleave)="defaultFull()" (click)="addfullMealToCart()">
+                        <!--<button md-raised-button color="accent" class="full" (mouseenter)="showFullPrice()" (mouseleave)="defaultFull()" (click)="addfullMealToCart()">
+                            {{fullMealText}}
+                        </button>-->
+                        <button md-raised-button color="accent" class="full" (mouseenter)="toggleState2()" (mouseleave)="toggleState2()"
+                                (click)="addfullMealToCart()" [@buttonHover]="state2">
                             {{fullMealText}}
                         </button>
                     </md-card-content>
@@ -104,7 +114,8 @@
                 </div>
             </div>
 
-            <button md-raised-button color="accent" (click)="proceedOrder()">Proceed</button>
+            <!--<button md-raised-button color="accent" (click)="proceedOrder()">Proceed</button>-->
+            <button md-raised-button color="accent" (mouseenter)="toggleState3()" (mouseleave)="toggleState3()" (click)="proceedOrder()" [@buttonHover]="state3">Proceed</button>
         </md-card-content>
     </md-card>
 
@@ -152,7 +163,8 @@
                     </label>
                 </div>
 
-                <button md-raised-button color="primary" type="button"  (click)="placeOrder()">Place Order</button>
+                <!--<button md-raised-button color="primary" type="button"  (click)="placeOrder()">Place Order</button>-->
+                <button md-raised-button color="primary" type="button" (mouseenter)="toggleState4()" (mouseleave)="toggleState4()" (click)="placeOrder()" [@buttonHover]="state4">Place Order</button>
             </form>
         </md-card-content>
     </md-card>

@@ -1,7 +1,7 @@
 import { User } from './../model/user';
 import { UserService } from './../services/user.service';
 import { Order } from './../model/order';
-import { Component, OnInit, Optional } from '@angular/core';
+import { Component, OnInit, Optional, Input, trigger, state, style, transition, animate } from '@angular/core';
 import {OrderService} from '../services/order.service';
 import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
 import {MdDialog, MdDialogRef, MdSnackBar} from '@angular/material';
@@ -15,6 +15,29 @@ declare var $: any;
     selector: 'order-tab',
     templateUrl: '../views/order.component.html',
     styleUrls: ['../styles/style.scss', '../../custom_theme.scss'],
+    animations: [
+        trigger('buttonHover', [
+            state('inactive', style({
+                transform: 'scale(1)'
+            })),
+            state('active', style({
+                transform: 'scale(1.05)'
+            })),
+            transition('inactive => active', animate('250ms ease-in')),
+            transition('active => inactive', animate('250ms ease-out'))
+        ]),
+
+        trigger('textMove', [
+            state('inactive', style({
+                transform: 'translateY(0)'
+            })),
+            state('active', style({
+                transform: 'translateY(100%)'
+            })),
+            transition('inactive => active', animate('200ms') ),
+            transition('active => inactive', animate('200ms') )
+        ])
+    ],
     providers: [MdSnackBar]
 })
 
@@ -28,6 +51,13 @@ export class OrderComponent implements OnInit{
     lastDialogResult: string;
     dialogRef: MdDialogRef<UserDialog>;
     quantity_alert: boolean = false;
+
+    state: string = "inactive";
+    state2: string = "inactive";
+    state3: string = "inactive";
+    state4: string = "inactive";
+
+    isMouseHover: boolean = false;
 
     user_phone: boolean = false;
     user_name: boolean = false;
@@ -52,6 +82,23 @@ export class OrderComponent implements OnInit{
     constructor(private orderService: OrderService, private menuService: MenuService,
                 private _dialog: MdDialog, private _snackbar: MdSnackBar, private userService: UserService){
         
+    }
+
+    toggleState(){
+        this.state = this.state==='inactive' ? 'active' : 'inactive';
+    }
+    toggleState2(){
+        this.state2 = this.state2==='inactive' ? 'active' : 'inactive';
+    }
+    toggleState3(){
+        this.state3 = this.state3==='inactive' ? 'active' : 'inactive';
+    }
+    toggleState4(){
+        this.state4 = this.state4==='inactive' ? 'active' : 'inactive';
+    }
+
+    toggleMouse(){
+        this.isMouseHover = this.isMouseHover == true ? false : true;
     }
 
     showFullPrice(){
