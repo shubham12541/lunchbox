@@ -67,7 +67,7 @@
         </div>-->
     </md-card>
 
-    <md-card *ngIf="lightMealQuantity>0 || fullMealQuantity>0">
+    <md-card class="animated slideInLeft" *ngIf="lightMealQuantity>0 || fullMealQuantity>0">
         <md-card-title>
             Cart
             <button type="button" class="close" (click)="clearCart()">&times;</button>
@@ -119,7 +119,7 @@
         </md-card-content>
     </md-card>
 
-    <md-card *ngIf="isUserDetail">
+    <md-card class="animated slideInLeft" *ngIf="isUserDetail">
         <md-card-title>
             User Details
             <button type="button" class="close" (click)="clear()">&times;</button>
@@ -189,7 +189,7 @@
 
     </md-card>-->
 
-    <md-card *ngIf="order_status">
+    <md-card class="animated slideInLeft" *ngIf="order_status">
         <md-card-title>Order Status</md-card-title>
         <div class="alert alert-success" *ngIf="order_success">
             <strong>Order Placed Successfully</strong><br>Contact 8894730166 for any queries.
