@@ -79,6 +79,8 @@ export class OrderComponent implements OnInit{
     lightMealText: string = "Add to Cart";
     fullMealText: string = "Add to Cart";
 
+    todayDate: number;
+
     constructor(private orderService: OrderService, private menuService: MenuService,
                 private _dialog: MdDialog, private _snackbar: MdSnackBar, private userService: UserService){
         
@@ -143,6 +145,8 @@ export class OrderComponent implements OnInit{
         this.price.subscribe(res=>{
             this.thaliPrice = res.price;
         });
+
+        this.todayDate = Date.now();
     }
 
     showSnackBar(){
@@ -177,14 +181,16 @@ export class OrderComponent implements OnInit{
                 phone: this.userPhone,
                 fullQuantity: this.fullMealQuantity,
                 lightQuantity: this.lightMealQuantity,
-                amount: this.fullMealQuantity*80 + this.lightMealQuantity*70
+                amount: this.fullMealQuantity*80 + this.lightMealQuantity*70,
+                date: this.todayDate
             };
 
             this.user= {
                 id: this.getId(),
                 name: this.userName,
                 phone:  this.userPhone,
-                address: this.userAddress
+                address: this.userAddress,
+                date: this.todayDate
             };
             
 

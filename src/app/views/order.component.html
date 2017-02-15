@@ -19,7 +19,7 @@
                         <md-card-title>Light Meal</md-card-title>
                         <md-card-subtitle>Lunch/Dinner</md-card-subtitle>
                     </md-card-title-group>
-                    <img md-card-image src="../../assets/img/tiffin1.jpg">
+                    <img md-card-image src="../../assets/img/tiffin12.jpg">
                     <md-card-content>
                         <div class="menu-text">
                             Dal<br>+<br>Seasonal Sabzi<br>+<br>Roti(3)<br>+<br>Rice<br>+<br>Salad
@@ -67,7 +67,9 @@
         </div>-->
     </md-card>
 
-    <md-card class="animated slideInLeft" *ngIf="lightMealQuantity>0 || fullMealQuantity>0">
+    <md-card class="animated" 
+        [ngClass]="{slideInLeft: lightMealQuantity>0 || fullMealQuantity>0, slideOutLeft: outAnimation }"  
+        *ngIf="lightMealQuantity>0 || fullMealQuantity>0">
         <md-card-title>
             Cart
             <button type="button" class="close" (click)="clearCart()">&times;</button>

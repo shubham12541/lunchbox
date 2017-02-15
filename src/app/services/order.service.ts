@@ -14,7 +14,11 @@ export class OrderService{
     constructor(af: AngularFire){
         const orderPath = '/orders';
         const pricePath = '/price';
-        this.order = af.database.list(orderPath);
+        this.order = af.database.list(orderPath, {
+            query: {
+                orderByChild: 'date'
+            }
+        });
         this.price = af.database.object(pricePath);
     }
 
@@ -33,6 +37,7 @@ export class OrderService{
     getAllOrders(){
         return this.order;
     }
+
 
     saveOrder(order: Order){
         return this.order.push(order);

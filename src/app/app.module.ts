@@ -9,7 +9,7 @@ import { HttpModule } from '@angular/http';
 import { AngularFireModule } from 'angularfire2';
 import {MaterialModule} from '@angular/material';
 
-import {ShareButtonsModule} from 'ng2-sharebuttons';
+// import {ShareButtonsModule} from 'ng2-sharebuttons';
 import 'hammerjs';
 
 import { AppComponent } from './app.component';
@@ -42,7 +42,6 @@ export const firebaseConfig = {
     BrowserModule,
     FormsModule,
     HttpModule,
-    ShareButtonsModule,
     MaterialModule.forRoot(),
     AppRoutingModule,
     AngularFireModule.initializeApp(firebaseConfig)

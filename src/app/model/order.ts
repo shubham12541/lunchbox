@@ -6,4 +6,5 @@ export class Order{
     phone: string;
     address: string;
     amount: number;
+    date: number;
 }
